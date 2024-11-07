@@ -1,0 +1,129 @@
+<%- include('partials/header') %>
+
+<div class="content">
+    <div class="nav_area"><%- include('partials/nav') %></div>
+
+    <div class="messages_area">
+      <header class="header">
+        <h1>Chi Tiết Email</h1>
+      </header>
+    
+      <div class="email-details">
+        <div class="email-sender">Người Gửi: <%= email.sender_email %></div>
+        <div class="email-receiver">Người Nhận: <%= email.receiver_email %></div>
+        <div class="email-subject">Chủ Đề: <%= email.subject %></div>
+        <div class="email-body">Nội Dung: <%= email.body %></div>
+        <div class="email-date">
+          Ngày Gửi: <%= new Date(email.sent_at).toLocaleString() %>
+        </div>
+        <a href="/email/delete/<%= email.id %>" class="delete-button">Xóa</a>
+        <a href="/email/inbox" class="back-button">Quay lại hộp thư đến</a>
+        <a href="/email/outbox" class="back-button">Quay lại hộp thư đi</a>
+      </div>
+    </div>
+</div>
+
+
+
+<style>
+  /* Đảm bảo layout của trang sẽ sử dụng toàn bộ màn hình */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+  }
+  .content {
+        display: flex;
+        height: 100vh;
+      }
+
+  .messages_area {
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+  }
+  .nav_area {
+    width: 250px;
+    background-color: #f0f0f0;
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  .container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  /* Bố cục header */
+ 
+
+  h1 {
+    margin: 0;
+  }
+
+  /* Email Details */
+  .email-details {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+
+  .email-sender,
+  .email-receiver,
+  .email-subject,
+  .email-body,
+  .email-date {
+    margin-bottom: 15px;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .email-sender,
+  .email-receiver {
+    font-weight: bold;
+  }
+
+  .email-body {
+    font-size: 14px;
+    color: #333;
+    white-space: pre-wrap; /* Giữ nguyên định dạng của nội dung email */
+  }
+
+  /* Các nút quay lại và xóa */
+  a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+
+  .delete-button {
+    background-color: #ff5c5c;
+    margin-right: 10px;
+  }
+
+  .delete-button:hover {
+    background-color: #ff2a2a;
+  }
+
+  .back-button {
+    background-color: #4caf50;
+  }
+
+  .back-button:hover {
+    background-color: #45a049;
+  }
+
+  /* Đảm bảo nút xóa và quay lại không bị dính với nhau */
+  .delete-button,
+  .back-button {
+    display: inline-block;
+    margin-top: 15px;
+  }
+</style>

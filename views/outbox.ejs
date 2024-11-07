@@ -1,0 +1,386 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      
+      .container_swap {
+        width: 700px;
+      }
+
+      .div_left {
+        width: 200px;
+        float: left;
+        text-align: center;
+      }
+
+      .div_right {
+        width: 200px;
+        float: left;
+        text-align: center;
+      }
+
+      .content {
+        display: flex;
+        height: 100vh;
+      }
+
+      .nav_area {
+        width: 250px;
+        background-color: #f0f0f0;
+        color: white;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      .messages_area {
+        margin-left: auto;
+        margin-right: auto;
+        width: 75%;
+      }
+
+      .messages {
+        width: 100%;
+        font-size: 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px;
+        border-bottom: 0.8px solid #ced4da;
+        color: var(--dark-gray);
+      }
+
+      .email-item {
+        display: flex;
+        justify-content:right;
+        align-items: center;
+        padding: 5px 0;
+      }
+     
+      
+      .emailList_settings {
+        position: sticky;
+        top: 0;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid whitesmoke;
+        background-color: white;
+        z-index: 999;
+        padding: 8px;
+      }
+      .emailList_settingsLeft {
+        display: flex;
+        align-items: center;
+      }
+      .emailList_settings .material-symbols-outlined {
+        margin: 5px;
+        cursor: pointer;
+      }
+      .section {
+        display: flex;
+        align-items: center;
+        border-bottom-width: 2px;
+        padding: 15px;
+        min-width: 200px;
+        cursor: pointer;
+        color: grey;
+        border-width: 0;
+      }
+      .emailList_sections {
+        position: sticky;
+        top: 0;
+        display: flex;
+        background-color: white;
+        border-bottom: 1px solod whitesmoke;
+        z-index: 999;
+      }
+      .section_selected {
+        background-color: whitesmoke;
+        border-left: 3px;
+        color: red;
+        border-bottom: 3px solid red;
+      }
+      .section_selected .material-symbols-outlined {
+        color: red;
+      }
+      .section:hover {
+        background-color: whitesmoke;
+        border-width: 3px;
+      }
+      .section h4 {
+        font-size: 14px;
+        margin-left: 15px;
+      }
+      .emailRow_options{
+        display: flex;
+        align-items: center;
+      }
+      .emailRow_options .material-symbols-outlined,input{
+        margin: 5px;
+
+      }
+      .emailRow{
+        display: flex;
+        align-items: center;
+        height: 50px;
+        border-bottom:1px solid whitesmoke;
+        cursor: pointer;
+        z-index: 999;
+      }
+      .emailRow:hover {
+        border-top: 1px solid whitesmoke;
+        box-shadow: 0 4px 4px -2px rgba(0,0,0,0.24);
+      }
+      .emailRow_message{
+        display: flex;
+        flex: 0.8;
+        align-items: center;
+        font-size: 13px;
+      }
+      .emailRow_message h4{
+        width: 300px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+      .emailRow_title{
+        font-size: 15px;
+        flex: 0.3;
+        width: 400px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+      .emailRow_time{
+        padding-right: 15px;
+        font-size: 10px;
+        font-weight: bold;
+      }
+      .emailRow_description{
+        font-weight: 400;
+        color: grey;
+        padding-left: 20px;
+      }
+      a{
+        display: flex;
+        width: 1500px;
+      }
+      .delete{
+        margin-left: 50px;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+
+  .pagination {
+  display: flex;
+  justify-content: center; /* Đặt các nút ở giữa */
+  align-items: center;
+  gap: 12px; /* Tăng khoảng cách giữa các phần tử */
+  margin-left: 80px;
+  margin-top: 20px;
+}
+
+.pagination a,
+.pagination span {
+  
+  justify-content: flex-start;
+  text-decoration: none;
+  justify-content: s;
+  color: #333;
+  padding: 10px 15px; 
+  border-radius: 4px;
+  background-color: #f1f1f1; 
+  transition: background-color 0.3s ease;
+}
+
+.pagination a:hover {
+  background-color: #007bff; 
+  color: white; 
+}
+
+#pagination-buttons {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+  gap: 15px; 
+  width: 30px;
+}
+
+#page-info {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #666; 
+  font-weight: 600;
+}
+
+#page-info{
+  display: flex;
+
+}
+
+.inbox{
+  display: flex;
+  justify-content: center;
+}
+</style>
+</head>
+<body>
+
+
+
+      
+    </style>
+  </head>
+  <body>
+    <%- include('partials/header') %>
+
+    <div class="content">
+      <div class="nav_area"><%- include('partials/nav') %></div>
+      <div class="messages_area">
+        <h3 class="inbox">Hộp thư đến</h3>
+
+
+        <div class="emailList_sections">
+          <div class="section section_selected">
+            <span class="material-symbols-outlined"> inbox </span>
+            <h4>Primary</h4>
+          </div>
+
+          <div class="section">
+            <span class="material-symbols-outlined"> groups </span>
+            <h4>Social</h4>
+          </div>
+
+          <div class="section">
+            <span class="material-symbols-outlined"> sell </span>
+            <h4>Promotions</h4>
+          </div>
+        </div>
+
+        <div class="emailList">
+          <div class="emailList_settings">
+            <div class="emailList_settingsLeft">
+              <input type="checkbox" />
+              <span class="material-symbols-outlined">
+                keyboard_arrow_down
+              </span>
+              <span class="material-symbols-outlined"> redo </span>
+              <span class="material-symbols-outlined"> more_vert </span>
+            </div>
+
+            <div class="emailList_settings">
+  <div class="emailList_settingsLeft">
+    <input type="checkbox" id="select-all" /> Chọn tất cả
+    <span class="material-symbols-outlined"> keyboard_arrow_down </span>
+    <span class="material-symbols-outlined"> redo </span>
+    <span class="material-symbols-outlined"> more_vert </span>
+  </div>
+
+  <div class="emailList_settingsRight">
+    <button id="delete-selected" class="delete-button">
+      Xóa đã chọn
+    </button>
+  </div>
+</div>
+
+
+       </div>
+       
+        </div>
+        <div class="pagination" id="pagination-buttons">
+          <a href="#" id="prev" class="page-btn">Trước</a>
+          <span id="page-info">Page 1 / 5</span>
+          <a href="#" id="next" class="page-btn">Sau</a>
+        </div>
+      </div>
+      <div>
+        
+      </div>
+    
+    </div>
+
+    <script>
+          // Danh sách email từ backend
+      const emails = <%- JSON.stringify(emails) %>;
+      const pageSize = 5; // Số lượng email mỗi trang
+      let currentPage = 1; // Trang hiện tại
+
+      // Hàm hiển thị email cho trang hiện tại
+      function displayEmails(page) {
+        const start = (page - 1) * pageSize;
+        const end = start + pageSize;
+        const pagedEmails = emails.slice(start, end);
+
+        // Dynamically update the email list based on the current page
+        const emailListContainer = document.querySelector('.emailList');
+        emailListContainer.innerHTML = ''; // Clear current list
+
+        pagedEmails.forEach(email => {
+          const emailRow = document.createElement('div');
+          emailRow.classList.add('emailRow');
+          emailRow.innerHTML = `
+            <div class="emailRow_options">
+              <input type="checkbox" />
+              <span class="material-symbols-outlined"> star </span>
+              <span class="material-symbols-outlined"> label_important </span>
+            </div>
+            <a href="/email/${email.id}">
+              <h3 class="emailRow_title">${email.sender_email}</h3>
+              <div class="emailRow_message">
+                <h4><span class="emailRow_description">${email.subject}</span></h4>
+              </div>
+              <div class="emailRow_message">
+                <h4><span class="emailRow_description">${email.body}</span></h4>
+              </div>
+            </a>
+            <p class="emailRow_time">10pm</p>
+            <a class="delete" href="/email/delete/${email.id}">
+              <span class="material-symbols-outlined"> delete </span>
+            </a>
+          `;
+          emailListContainer.appendChild(emailRow);
+        });
+
+        // Update page info
+        document.getElementById('page-info').textContent = `Page ${currentPage} / ${Math.ceil(emails.length / pageSize)}`;
+      }
+
+      // Handle Next and Previous buttons
+      document.getElementById('prev').addEventListener('click', () => {
+        if (currentPage > 1) {
+          currentPage--;
+          displayEmails(currentPage);
+        }
+      });
+
+      document.getElementById('next').addEventListener('click', () => {
+        if (currentPage < Math.ceil(emails.length / pageSize)) {
+          currentPage++;
+          displayEmails(currentPage);
+        }
+      });
+
+      // Initially display the first page
+      displayEmails(currentPage);
+    </script>
+  </body>
+</html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+       
+    </style>
+  </head>
+  <body>
+    <!-- Phân trang -->
+  </body>
+</html>

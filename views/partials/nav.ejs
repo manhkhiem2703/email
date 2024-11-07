@@ -1,0 +1,573 @@
+<style>
+  .sidebar {
+    flex: 0.3;
+    max-width: 300px;
+    padding-right: 20px;
+  }
+  .sidebar_compose {
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+    color: gray;
+    padding: 15px;
+    border-radius: 30px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    box-shadow: 0px 2px 5px -2px rgba(red, green, blue, alpha);
+  }
+
+  .sidebar_compose span {
+    margin-right: 5px;
+  }
+  .sidebarOption {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 10px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    cursor: pointer;
+    color: #818181;
+  }
+  .sidebarOption .material-symbols-outlined {
+    padding: 5px;
+  }
+  .sidebarOption h3 {
+    flex: 1;
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .sidebar_footer {
+    display: flex;
+    justify-content: center;
+  }
+  .sidebar_footerIcons .material-symbols-outlined {
+    margin: 7px;
+    cursor: pointer;
+  }
+  .main_body {
+    display: flex;
+    height: 100vh;
+  }
+  a {
+    text-decoration: none;
+  }
+
+  /* CSS cho Modal */
+  .modal {
+    display: none; /* Ẩn modal mặc định */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Màu nền mờ */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  /* Nội dung của Modal */
+  .modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    width: 600px;
+    max-width: 90%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Nút đóng (X) */
+  .close {
+    color: #5f6368;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+  }
+
+  .close:hover {
+    color: #202124;
+  }
+
+  /* Tiêu đề Modal */
+  h2 {
+    margin: 0;
+    padding-bottom: 20px;
+    font-size: 22px;
+    font-weight: 500;
+    color: #202124;
+  }
+
+  /* Các trường nhập liệu */
+  input[type="email"],
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px 0;
+    border: 1px solid #e4e4e4;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #202124;
+    box-sizing: border-box;
+  }
+
+  input[type="email"]:focus,
+  input[type="text"]:focus,
+  textarea:focus {
+    border-color: #1a73e8;
+    outline: none;
+  }
+
+  /* Nút gửi email */
+  button {
+    padding: 10px 20px;
+    background-color: #1a73e8;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  button:hover {
+    background-color: #1558b3;
+  }
+
+  /* Các Label cho các trường */
+  label {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #202124;
+  }
+
+  /* Cấu trúc cho form */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  /* Kết cấu tổng thể của giao diện */
+  .content {
+    font-family: "Roboto", sans-serif;
+    padding: 20px;
+  }
+
+  .sidebar {
+    flex: 0.3;
+    max-width: 300px;
+    padding-right: 20px;
+  }
+  .sidebar_compose {
+    margin-top: 15px;
+    margin-left: 10px;
+    margin-bottom: 15px;
+    text-transform: capitalize;
+    color: gray;
+    padding: 15px;
+    border-radius: 30px;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    box-shadow: 0px 2px 5px -2px rgba(red, green, blue, alpha);
+  }
+
+  .sidebar_compose span {
+    margin-right: 5px;
+  }
+  .sidebarOption {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 0 10px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    cursor: pointer;
+    color: #818181;
+  }
+  .sidebarOption .material-symbols-outlined {
+    padding: 5px;
+  }
+  .sidebarOption h3 {
+    flex: 1;
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .sidebar_footer {
+    display: flex;
+    justify-content: center;
+  }
+  .sidebar_footerIcons .material-symbols-outlined {
+    margin: 7px;
+    cursor: pointer;
+  }
+  .main_body {
+    display: flex;
+    height: 100vh;
+  }
+  a {
+    text-decoration: none;
+  }
+
+  /* Nội dung của Modal */
+  .modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    width: 600px;
+    max-width: 90%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Nút đóng (X) */
+  .close {
+    color: #5f6368;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+  }
+
+  .close:hover {
+    color: #202124;
+  }
+
+  /* Tiêu đề Modal */
+  h2 {
+    margin: 0;
+    padding-bottom: 20px;
+    font-size: 22px;
+    font-weight: 500;
+    color: #202124;
+  }
+  .form-header {
+    display: flex;
+    justify-content: center;
+  }
+  /* Các trường nhập liệu */
+  input[type="email"],
+  input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px 0;
+    border: 1px solid #e4e4e4;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #202124;
+    box-sizing: border-box;
+  }
+
+  input[type="email"]:focus,
+  input[type="text"]:focus,
+  textarea:focus {
+    border-color: #1a73e8;
+    outline: none;
+  }
+
+  /* Nút gửi email */
+  button {
+    padding: 10px 20px;
+    background-color: #718bad;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 15px;
+  }
+
+  button:hover {
+    background-color: #89929e;
+  }
+
+  /* Các Label cho các trường */
+  label {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #202124;
+  }
+
+  /* Cấu trúc cho form */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  /* Kết cấu tổng thể của giao diện */
+  .content {
+    font-family: "Roboto", sans-serif;
+    padding: 20px;
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 8px;
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .attachment-info {
+    color: blueviolet;
+  }
+  .logout-button{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    padding-left: 15px;
+    margin-left: 20px;
+  }
+  .form-logout{
+    padding-top: 50px;
+  }
+  .nav_area{
+    height: 100vh;
+    margin-top: -20px;
+    margin-left: -20px;
+  }
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="main_body">
+      <div class="sidebar">
+        <div>
+          <div id="composeModal" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <form
+                id="composeForm"
+                method="POST"
+                enctype="multipart/form-data"
+                class="compose-form"
+              >
+                <div class="form-header sidebar_compose">
+                  <h2>Soạn Thư</h2>
+                </div>
+
+                <div class="form-group">
+                  <label for="receiver_email">Đến:</label>
+                  <input
+                    type="email"
+                    name="receiver_email"
+                    id="receiver_email"
+                    required
+                    class="input-field"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="subject">Tiêu đề:</label>
+                  <input
+                    type="text"
+                    name="subject"
+                    id="subject"
+                    required
+                    class="input-field"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="message">Nội dung:</label>
+                  <textarea
+                    name="message"
+                    id="message"
+                    required
+                    class="textarea-field"
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="attachment">Đính kèm:</label>
+                  <input
+                    type="file"
+                    name="attachment"
+                    id="attachment"
+                    class="input-file"
+                  />
+                  <div id="attachmentInfo" class="attachment-info"></div>
+                </div>
+
+                <div class="form-footer">
+                  <button type="submit" class="submit-btn">Gửi</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <button class="sidebarOption_active" id="composeButton">
+          Soạn Thư
+        </button>
+
+        <a href="/email/inbox">
+          <div class="sidebarOption sidebarOption_active">
+            <span class="material-symbols-outlined"> inbox </span>
+            <h3>Inbox</h3>
+          </div>
+        </a>
+        <div class="sidebarOption sidebarOption_active">
+          <span class="material-symbols-outlined"> schedule </span>
+          <h3>Snoozed</h3>
+        </div>
+        <div class="sidebarOption sidebarOption_active">
+          <span class="material-symbols-outlined"> label_important </span>
+          <h3>important</h3>
+        </div>
+        <div class="sidebarOption sidebarOption_active">
+          <span class="material-symbols-outlined"> near_me </span>
+          <a href="/email/outbox"><h3>Send</h3></a>
+        </div>
+
+        <div class="sidebarOption sidebarOption_active">
+          <span class="material-symbols-outlined"> description </span>
+          <h3>Drafts</h3>
+        </div>
+        <div class="sidebarOption sidebarOption_active">
+          <span class="material-symbols-outlined"> expand_circle_down </span>
+          <h3>More</h3>
+        </div>
+        <div class="sidabar_footer">
+          <div class="sidebar_footerIcons">
+            <span class="material-symbols-outlined"> person </span>
+            <span class="material-symbols-outlined"> phone_iphone </span>
+          </div>
+
+          <!-- Link đăng xuất -->
+          <!-- Nút đăng xuất -->
+          <form class="form-logout" action="/auth/signin" method="get">
+            <button type="submit" id="logout" class="logout-button">Đăng Xuất</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+
+    <script>
+      
+      document.addEventListener("DOMContentLoaded", function () {
+        const modal = document.getElementById("composeModal");
+        const closeBtn = document.querySelector(".close");
+        const composeButton = document.getElementById("composeButton");
+        const form = document.getElementById("composeForm");
+
+        // Mở modal khi nhấn nút "Soạn Thư"
+        composeButton.onclick = function () {
+          modal.style.display = "block";
+          resetForm()
+        };
+
+        // Đóng modal khi click vào dấu "X"
+        closeBtn.onclick = function () {
+          modal.style.display = "none";
+        };
+
+        // Đóng modal khi click ra ngoài modal
+        window.onclick = function (event) {
+          if (event.target === modal) {
+            modal.style.display = "none";
+            resetForm();
+          }
+        };
+
+        // Xử lý gửi email qua fetch mà không chuyển trang
+        form.onsubmit = function (event) {
+          event.preventDefault(); // Ngừng hành động gửi form mặc định
+
+          const formData = new FormData(form);
+
+          fetch("/email/compose", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => response.json()) // Đảm bảo API trả về JSON
+            .then((data) => {
+              if (data.success) {
+                alert("Email đã được gửi thành công!");
+                window.location.assign('/email/inbox')
+                modal.style.display = "none"; // Ẩn modal khi gửi thành công
+              } else {
+                alert("Đã xảy ra lỗi khi gửi email.");
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              alert("Đã xảy ra lỗi khi gửi email.");
+            });
+            
+        };
+      });
+      function resetForm() {
+        composeForm.reset(); // Reset toàn bộ form
+        attachmentInfo.textContent = ""; // Xóa thông tin tệp đã chọn
+      }
+
+      document
+        .getElementById("attachment")
+        .addEventListener("change", function (event) {
+          const file = event.target.files[0]; // Lấy tệp đầu tiên từ input
+          const attachmentInfo = document.getElementById("attachmentInfo"); // Lấy phần tử hiển thị thông tin tệp
+
+          if (file) {
+            const fileName = file.name; // Lấy tên tệp
+            const fileSize = (file.size / 1024).toFixed(2); // Lấy kích thước tệp (MB)
+
+            // Hiển thị thông tin tệp vào phần tử #attachmentInfo
+            attachmentInfo.textContent = `Tệp: ${fileName} (${fileSize} KB)`;
+          } else {
+            attachmentInfo.textContent = ""; // Nếu không có tệp nào được chọn, không hiển thị gì
+          }
+        });
+        
+        
+    </script>
+  </body>
+</html>

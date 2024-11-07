@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/styles/style.css" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      .header_left img {
+        object-fit: contain;
+        height: 50px;
+        margin-left: 5px;
+      }
+      .header {
+        padding-top: 20px;
+        padding-bottom: 20px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid whitesmoke;
+      }
+      .header_left {
+        display: flex;
+        align-items: center;
+      }
+      .header_left span {
+        padding: 10px;
+        cursor: pointer;
+      }
+      .header_midle {
+        display: flex;
+        flex: 0.7;
+        align-items: center;
+        background-color: whitesmoke;
+        padding: 10px;
+        border-radius: 5px;
+      }
+      .header_midle input {
+        border: none;
+        width: 100%;
+        padding: 10px;
+        outline: none;
+        font-size: medium;
+        background-color: transparent;
+      }
+      .material-symbols-outlined {
+        color: gray;
+      }
+
+      .header_right {
+        display: flex;
+        padding-right: 20px;
+      }
+      .header_right span {
+        padding: 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="header_left">
+        <span class="material-symbols-outlined"> menu </span>
+        <img
+          src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_default_1x_r5.png"
+          alt=""
+        />
+=      </div>
+      <div class="header_midle">
+        <span class="material-symbols-outlined"> search</span>
+        <input type="text" placehodler="Search menu" />
+        <span class="material-symbols-outlined"> arrow_drop_down </span>
+      </div>
+      <div class="header_right">
+        <span class="material-symbols-outlined"> apps </span>
+        <span class="material-symbols-outlined"> notifications </span>
+        <span class="material-symbols-outlined"> account_circle </span>
+      </div>
+    </header>
+  </body>
+</html>

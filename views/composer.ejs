@@ -1,0 +1,184 @@
+<!-- <form action="/email/compose" method="POST" enctype="multipart/form-data">
+  <div>
+    <label for="receiver_email">Đến:</label>
+    <input type="email" name="receiver_email" id="receiver_email" required>
+  </div>
+
+  <div>
+    <label for="subject">Tiêu đề:</label>
+    <input type="text" name="subject" id="subject" required>
+  </div>
+
+  <div>
+    <label for="message">Nội dung:</label>
+    <textarea name="message" id="message" required></textarea>
+  </div>
+
+  <div>
+    <label for="attachment">Đính kèm:</label>
+    <input type="file" name="attachment" id="attachment">
+  </div>
+
+  <button type="submit">Gửi</button>
+</form> -->
+
+
+<!-- <form action="/email/compose" method="POST" enctype="multipart/form-data" class="compose-form">
+  <div class="form-header">
+    <h2>Soạn Thư</h2>
+  </div>
+
+  <div class="form-group">
+    <label for="receiver_email">Đến:</label>
+    <input type="email" name="receiver_email" id="receiver_email" required class="input-field">
+  </div>
+
+  <div class="form-group">
+    <label for="subject">Tiêu đề:</label>
+    <input type="text" name="subject" id="subject" required class="input-field">
+  </div>
+
+  <div class="form-group">
+    <label for="message">Nội dung:</label>
+    <textarea name="message" id="message" required class="textarea-field"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="attachment">Đính kèm:</label>
+    <input type="file" name="attachment" id="attachment" class="input-file">
+  </div>
+
+  <div class="form-footer">
+    <button type="submit" class="submit-btn">Gửi</button>
+  </div>
+</form> -->
+<!-- Modal Soạn Email -->
+<div id="composeModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <form action="/email/compose" method="POST" enctype="multipart/form-data" class="compose-form">
+      <div class="form-header">
+        <h2>Soạn Thư</h2>
+      </div>
+    
+      <div class="form-group">
+        <label for="receiver_email">Đến:</label>
+        <input type="email" name="receiver_email" id="receiver_email" required class="input-field">
+      </div>
+    
+      <div class="form-group">
+        <label for="subject">Tiêu đề:</label>
+        <input type="text" name="subject" id="subject" required class="input-field">
+      </div>
+    
+      <div class="form-group">
+        <label for="message">Nội dung:</label>
+        <textarea name="message" id="message" required class="textarea-field"></textarea>
+      </div>
+    
+      <div class="form-group">
+        <label for="attachment">Đính kèm:</label>
+        <input type="file" name="attachment" id="attachment" class="input-file">
+      </div>
+    
+      <div class="form-footer">
+        <button type="submit" class="submit-btn">Gửi</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<style>
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.compose-form {
+  width: 500px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.form-header {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 22px;
+  color: #333;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.input-field,
+.textarea-field {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.input-field:focus,
+.textarea-field:focus {
+  border-color: #0078d4;
+  outline: none;
+}
+
+.textarea-field {
+  height: 150px;
+  resize: none;
+}
+
+.input-file {
+  font-size: 14px;
+}
+
+.form-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submit-btn {
+  background-color: #0078d4;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.submit-btn:hover {
+  background-color: #005a99;
+}
+
+.submit-btn:focus {
+  outline: none;
+}
+</style>
